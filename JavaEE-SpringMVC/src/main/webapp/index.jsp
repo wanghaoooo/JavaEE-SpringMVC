@@ -185,7 +185,7 @@
                 </thead>
 
                 <%
-                  List<StudentHomework> list = StudentHomeWorkJdbc.selectstudenthomework();
+                  List<StudentHomework> list = (List<StudentHomework>)request.getAttribute("list");
                   if(null == list || list.size() <= 0){
                   }else {
                     for (StudentHomework sh : list){

@@ -10,17 +10,20 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Configuration
 public class StudentHomeWorkJdbc {
 
     private static String url = "jdbc:mysql://127.0.0.1:3306/school?serverTimezone=UTC";
     private static String driverName = "com.mysql.cj.jdbc.Driver";
 
-    public static void main(String[] args) {
-
+    @Bean(name = "jdbc")
+    public StudentHomeWorkJdbc getJDBC() {
+        return new StudentHomeWorkJdbc();
     }
 
+
     //获取全部学生作业信息
-    public static List<StudentHomework> selectstudenthomework(){
+    public List<StudentHomework> selectstudenthomework(){
         String sqlString = "SELECT * FROM s_student_homework";
         try {
             // 加载驱动
@@ -53,7 +56,7 @@ public class StudentHomeWorkJdbc {
     }
 
     //获取全部学生信息
-    public static List<Student> selectstudent(){
+    public List<Student> selectstudent(){
         String sqlString = "SELECT * FROM s_student";
         try {
             // 加载驱动
@@ -85,7 +88,7 @@ public class StudentHomeWorkJdbc {
 
 
     //获取所有布置的作业信息
-    public static List<Homework> selecthomework(){
+    public List<Homework> selecthomework(){
         String sqlString = "SELECT * FROM s_homework";
         try {
             // 加载驱动
@@ -116,7 +119,7 @@ public class StudentHomeWorkJdbc {
     }
 
     //添加学生
-    public static boolean addstudent(Student student){
+    public boolean addstudent(Student student){
 
         try {
             Class.forName(driverName);
@@ -142,7 +145,7 @@ public class StudentHomeWorkJdbc {
     }
 
     //老师布置作业
-    public static boolean addhomework(Homework homework){
+    public boolean addhomework(Homework homework){
 
         try {
             Class.forName(driverName);
@@ -168,7 +171,7 @@ public class StudentHomeWorkJdbc {
     }
 
     //学生提交作业
-    public static boolean addstudenthomework(StudentHomework studentHomework){
+    public boolean addstudenthomework(StudentHomework studentHomework){
 
         try {
             Class.forName(driverName);
@@ -194,7 +197,5 @@ public class StudentHomeWorkJdbc {
         }
         return resultSet >0;
     }
-
-
 
 }
